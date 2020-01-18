@@ -14,19 +14,4 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('test', function () {
-    dd(request('test'));
-    return view('test');
-});
-
-Route::get('route-parameter/{param}', function ($param) {
-    dd($param);
-});
-
-Route::get('posts/{post}', function ($post) {
-    $posts = [
-        'first' => 'My First Post',
-        'second'=> 'My Second Post'
-    ];
-    return $posts[$post] ?? abort('404');
-});
+Route::get('posts/{post}', 'web\PostController@show');
