@@ -21,6 +21,8 @@ Route::get('test', function () {
 });
 
 Route::get('about', function () {
-    return view('about');
+    $posts = \App\Models\Post::latest()->paginate(10);
+    return view('about', compact('posts'));
 });
-Route::get('posts/{post}', 'web\PostController@show');
+Route::get('posts', 'web\PostController@index')->name('posts.index');
+Route::get('posts/{post}', 'web\PostController@show')->name('posts.show');

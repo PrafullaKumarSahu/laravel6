@@ -33,7 +33,7 @@ Released   : 20140225
 			<ul>
 				<li class="{{ Request::path() == '/' ? 'current_page_item': ''}}"><a href="/" accesskey="1" title="">Homepage</a></li>
 				<li class="{{ Request::path() == 'about' ? 'current_page_item': ''}}"><a href="/about" accesskey="2" title="">About</a></li>
-				<li class="{{ Request::path() == 'careers' ? 'current_page_item': ''}}"><a href="#" accesskey="4" title="">Careers</a></li>
+				<li class="{{ Request::path() == 'posts' ? 'current_page_item': ''}}"><a href="/posts" accesskey="4" title="">Posts</a></li>
 				<li class="{{ Request::path() == 'contact-us' ? 'current_page_item': ''}}"><a href="#" accesskey="5" title="">Contact Us</a></li>
 			</ul>
 		</div>

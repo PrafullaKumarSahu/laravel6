@@ -11,18 +11,12 @@
 		</div>
         	<div id="sidebar">
 			<ul class="style1">
-				<li class="first">
-					<h3>Amet sed volutpat mauris</h3>
-					<p><a href="#">In posuere eleifend odio. Quisque semper augue mattis wisi. Pellentesque viverra vulputate enim. Aliquam erat volutpat.</a></p>
+                @foreach($posts as $post)
+                <li class="first">
+					<h3>{{ $post->title }}</h3>
+					<p><a href="{{ route('posts.show', $post) }}">{{ $post->description }}</a></p>
 				</li>
-				<li>
-					<h3>Sagittis diam dolor sit amet</h3>
-					<p><a href="#">In posuere eleifend odio. Quisque semper augue mattis wisi. Pellentesque viverra vulputate enim. Aliquam erat volutpat.</a></p>
-				</li>
-				<li>
-					<h3>Maecenas ac quam risus</h3>
-					<p><a href="#">In posuere eleifend odio. Quisque semper augue mattis wisi. Pellentesque viverra vulputate enim. Aliquam erat volutpat.</a></p>
-				</li>
+                @endforeach
 			</ul>
 			<div id="stwo-col">
 				<div class="sbox1">

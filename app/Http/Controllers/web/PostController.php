@@ -15,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::latest()->paginate(10);
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -25,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return Post::all();
+        //
     }
 
     /**
@@ -47,7 +48,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return $post ?? abort('404');
+        $posts = Post::latest()->paginate(10);
+        return $post ? view('posts.show', compact('post', 'posts')) : abort('404');
     }
 
     /**
