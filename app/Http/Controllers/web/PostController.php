@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\models\Post;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -25,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return Post::all();
     }
 
     /**
@@ -47,7 +47,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return $post ?? abort('404');
     }
 
     /**
