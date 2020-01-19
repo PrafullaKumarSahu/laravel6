@@ -39,15 +39,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
-            'title' => 'required',
-            'description' => 'required'
-        ]);
-        $post = new Post;
-        $post->title = request('title');
-        $post->slug = Str::slug(request('title'));
-        $post->description = request('description');
-        $post->save();
+        Post::firstOrCreate($this->validatePost($request));
         return back();
     }
 
@@ -84,15 +76,8 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        request()->validate([
-            'title' => 'required',
-            'description' => 'required'
-        ]);
-        $post->title = request('title');
-        $post->slug = Str::slug(request('title'));
-        $post->description = request('description');
-        $post->save();
-        return route('posts.index');
+        Post::updateOrCreate($this->validatePost($request), ['title' => $this->validatePost($request)['title']]);
+        return redirect(route('posts.index'));
     }
 
     /**
@@ -104,5 +89,17 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    public function validatePost(request $request)
+    {
+        $validatedData = request()->validate([
+            'title' => 'required|unique:posts,id|max:255',
+            'description' => 'required'
+        ]);
+        $validatedData['slug'] = Str::slug($validatedData['title']);
+
+        // dd($validatedData);
+        return $validatedData;
     }
 }
