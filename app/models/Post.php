@@ -17,4 +17,10 @@ class Post extends Model
     {
         return 'slug';
     }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        $this->save();
+    }
 }
