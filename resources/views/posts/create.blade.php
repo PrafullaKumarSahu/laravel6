@@ -8,13 +8,19 @@
                 <div class="field">
                     <label class="label" for="title">
                     <div class="control">
-                        <input type="text" class="input" name="title" id="title" />
+                        <input type="text" class="input" name="title" id="title" value="{{ old('title') }}" />
+                        @error('title')
+						<p class="help is-danger">{{ $errors->first('title') }}</p>
+						@enderror
                     </div>
                 </div>
                 <div class="field">
                     <label class="label" for="description">
                     <div class="control">
-                        <textarea class="input" id="description" name="description"></textarea>
+                        <textarea class="input" id="description" name="description">{{ old('description') }}</textarea>
+                        @error('description')
+                        <p class="help is-danger">{{ $errors->first('description') }}</p>
+                        @enderror
                     </div>
                 </div>
 

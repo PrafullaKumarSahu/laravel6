@@ -9,13 +9,19 @@
                 <div class="field">
                     <label class="label" for="title">
                     <div class="control">
-                        <input type="text" class="input" name="title" id="title" value="{{ $post->title }}" />
+                        <input type="text" class="input @error('title') is-danger @enderror" name="title" id="title" value="{{ $post->title }}" />
+						@error('title')
+						<p class="help is-danger">{{ $errors->first('title') }}</p>
+						@enderror
                     </div>
                 </div>
                 <div class="field">
                     <label class="label" for="description">
                     <div class="control">
-                        <textarea class="input" id="description" name="description">{{ $post->description }}</textarea>
+                        <textarea class="input @error('description') is-danger @enderror" id="description" name="description">{{ $post->description }}</textarea>
+						@error('description')
+						<p class="help is-danger">{{ $errors->first('description') }}</p>
+						@enderror
                     </div>
                 </div>
 

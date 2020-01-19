@@ -39,6 +39,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        request()->validate([
+            'title' => 'required',
+            'description' => 'required'
+        ]);
         $post = new Post;
         $post->title = request('title');
         $post->slug = Str::slug(request('title'));
@@ -80,11 +84,15 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        request()->validate([
+            'title' => 'required',
+            'description' => 'required'
+        ]);
         $post->title = request('title');
         $post->slug = Str::slug(request('title'));
         $post->description = request('description');
         $post->save();
-        return back();
+        return route('posts.index');
     }
 
     /**
