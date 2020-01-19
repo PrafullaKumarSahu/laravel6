@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -26,7 +27,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $posts = Post::latest()->paginate(10);
+        return view('posts.create', compact('posts'));
     }
 
     /**
@@ -37,7 +39,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new Post;
+        $post->title = request('title');
+        $post->slug = Str::slug(request('title'));
+        $post->description = request('description');
+        $post->save();
+        return back();
     }
 
     /**
@@ -60,7 +67,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $posts = Post::latest()->paginate(10);
+        return $post ? view('posts.edit', compact('post', 'posts')) : abort('404');
     }
 
     /**
@@ -72,7 +80,11 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->title = request('title');
+        $post->slug = Str::slug(request('title'));
+        $post->description = request('description');
+        $post->save();
+        return back();
     }
 
     /**

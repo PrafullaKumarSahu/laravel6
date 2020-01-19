@@ -17,9 +17,11 @@ Released   : 20140225
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
 <link href="{{ asset('css/default.css')  }}" rel="stylesheet" type="text/css" media="all" />
 <link href="{{ asset('css/fonts.css') }}" rel="stylesheet" type="text/css" media="all" />
 <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" media="all" />
+
 <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
 
 </head>

@@ -25,4 +25,8 @@ Route::get('about', function () {
     return view('about', compact('posts'));
 });
 Route::get('posts', 'web\PostController@index')->name('posts.index');
+Route::post('posts', 'web\PostController@store')->name('posts.store');
+Route::get('posts/create', 'web\PostController@create')->name('posts.create');
 Route::get('posts/{post}', 'web\PostController@show')->name('posts.show');
+Route::put('posts/{post}', 'web\PostController@update')->name('posts.update');
+Route::get('posts/{post}/edit', 'web\PostController@edit')->name('posts.edit');
