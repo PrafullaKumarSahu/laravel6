@@ -1,4 +1,5 @@
 <?php
+use Symfony\Component\Routing\Loader\DependencyInjection\ServiceRouterLoader;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,5 +18,9 @@ Route::get('/', function () {
 
 Route::get('test', function () {
     echo 'test';
+});
+
+Route::get('about', function () {
+    return view('about');
 });
 Route::get('posts/{post}', 'web\PostController@show');
