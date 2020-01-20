@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Post extends Model
 {
@@ -22,5 +23,10 @@ class Post extends Model
     {
         $this->status = $status;
         $this->save();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }
