@@ -2,23 +2,11 @@
 @section('çontent')
 <div id="content">
 			<div class="title">
-				<h2>{{  $post->title }}</h2> </div>
-			<p>{{ $post->description }}</p>
-
-			<p>
-					@foreach($post->tags as $tag)
-						<a href="{{ route('tags.show', $tag) }}">{{ $tag->title }}</a>
-					@endforeach
-					</p>
+				<h2>{{  $tag->title }}</h2> </div>
+			<p>{{ $tag->description }}</p>
 		</div>
         	<div id="sidebar">
 			<ul class="style1">
-                @foreach($posts as $post)
-                <li class="first">
-					<h3>{{ $post->title }}</h3>
-					<p><a href="{{ route('posts.show', $post) }}">{{ $post->description }}</a></p>
-				</li>
-                @endforeach
 			</ul>
 			<div id="stwo-col">
 				<div class="sbox1">

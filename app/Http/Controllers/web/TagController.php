@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
-use App\models\Tag;
+use App\Models\Tag;
 use Illuminate\Http\Request;
+
+use App\Http\Controllers\Controller;
 
 class TagController extends Controller
 {
@@ -46,7 +48,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
+        return view('tags.show', compact('tag'));
     }
 
     /**

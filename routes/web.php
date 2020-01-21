@@ -30,3 +30,5 @@ Route::get('posts/create', 'web\PostController@create')->name('posts.create');
 Route::get('posts/{post}', 'web\PostController@show')->name('posts.show');
 Route::put('posts/{post}', 'web\PostController@update')->name('posts.update');
 Route::get('posts/{post}/edit', 'web\PostController@edit')->name('posts.edit');
+
+Route::get('tags/{tag}', 'web\TagController@show')->name('tags.show');
