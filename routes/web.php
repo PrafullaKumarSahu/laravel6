@@ -32,3 +32,7 @@ Route::put('posts/{post}', 'web\PostController@update')->name('posts.update');
 Route::get('posts/{post}/edit', 'web\PostController@edit')->name('posts.edit');
 
 Route::get('tags/{tag}', 'web\TagController@show')->name('tags.show');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
