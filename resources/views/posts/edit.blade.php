@@ -25,6 +25,20 @@
                     </div>
                 </div>
 
+				<div class="field">
+					<label class="label" for="tag">Tags</label>
+					<div class="control">
+						@if($tags)
+							@foreach ($tags as $tag)
+								<label for="tag-{{ $tag->id  }}"><input type="checkbox" name="tags[]" class="checkbox" @if($post->tags->contains($tag)) checked @endif id="tag-{{ $tag->id  }}" value="{{ $tag->id }}">{{ $tag->title }}</label>
+							@endforeach
+						@endif
+						@error('tags')
+                        <p class="help is-danger">{{ $errors->first('tags') }}</p>
+                        @enderror
+					</div>
+				</div>
+
                 <div class="field is-grouped">
                     <div class="control">
                         <input type="submit" class="btn btn-primary" id="submit" value="Submit"/>

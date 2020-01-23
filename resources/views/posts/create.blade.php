@@ -6,7 +6,7 @@
 			<form action="{{ route('posts.store') }}" method="POST">
             @csrf
                 <div class="field">
-                    <label class="label" for="title">
+                    <label class="label" for="title">Title</label>
                     <div class="control">
                         <input type="text" class="input" name="title" id="title" value="{{ old('title') }}" />
                         @error('title')
@@ -15,14 +15,28 @@
                     </div>
                 </div>
                 <div class="field">
-                    <label class="label" for="description">
+                    <label class="label" for="description">Description</label>
                     <div class="control">
-                        <textarea class="input" id="description" name="description">{{ old('description') }}</textarea>
+                        <textarea class="textarea" id="description" name="description">{{ old('description') }}</textarea>
                         @error('description')
                         <p class="help is-danger">{{ $errors->first('description') }}</p>
                         @enderror
                     </div>
                 </div>
+
+				<div class="field">
+					<label class="label" for="tag">Tags</label>
+					<div class="control">
+						@if($tags)
+							@foreach ( $tags as $tag)
+								<label for="tag-{{ $tag->id  }}"><input type="checkbox" name="tags[]" class="checkbox" id="tag-{{ $tag->id  }}" value="{{ $tag->id }}">{{ $tag->title }}</label>
+							@endforeach
+						@endif
+						@error('tags')
+                        <p class="help is-danger">{{ $errors->first('tags') }}</p>
+                        @enderror
+					</div>
+				</div>
 
                 <div class="field is-grouped">
                     <div class="control">

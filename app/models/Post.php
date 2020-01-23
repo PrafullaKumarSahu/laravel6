@@ -33,6 +33,6 @@ class Post extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'tag_post', 'post_id', 'tag_id');
+        return $this->belongsToMany(Tag::class, 'tag_post', 'post_id', 'tag_id')->withTimestamps();
     }
 }

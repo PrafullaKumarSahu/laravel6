@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -28,7 +29,8 @@ class PostController extends Controller
     public function create()
     {
         $posts = Post::latest()->paginate(10);
-        return view('posts.create', compact('posts'));
+        $tags = Tag::all();
+        return view('posts.create', compact('posts', 'tags'));
     }
 
     /**
@@ -39,8 +41,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        Post::firstOrCreate($this->validatePost($request));
+        $validatedData = $this->validatePost($request);
+        $tags = $validatedData['tags'];
+        unset($validatedData['tags']);
+        $post = Post::firstOrCreate($validatedData);
+        $post->tags()->attach($tags);
         return back();
+
+        //Another way can be just call validatePost() on first line and then when passing to create() just specify all fields in request() and additional data
+        //$this->validatePost($request) OR $this->valdiatePost
+        //Post::create(request(['title', 'description']) + ['slug' => Str::slug(request(title))]) ...
     }
 
     /**
@@ -64,7 +74,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $posts = Post::latest()->paginate(10);
-        return $post ? view('posts.edit', compact('post', 'posts')) : abort('404');
+        $tags = Tag::all();
+        return $post ? view('posts.edit', compact('post', 'posts', 'tags')) : abort('404');
     }
 
     /**
@@ -76,7 +87,11 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        Post::updateOrCreate($this->validatePost($request), ['title' => $this->validatePost($request)['title']]);
+        $validatedData = $this->validatePost($request);
+        $tags = $validatedData['tags'];
+        unset($validatedData['tags']);
+        Post::updateOrCreate($validatedData, ['title' => $validatedData['title']]);
+        $post->sync($tags);
         return redirect(route('posts.index'));
     }
 
@@ -95,11 +110,11 @@ class PostController extends Controller
     {
         $validatedData = request()->validate([
             'title' => 'required|unique:posts,id|max:255',
-            'description' => 'required'
+            'description' => 'required',
+            'tags' => 'exists:tags,id'
         ]);
         $validatedData['slug'] = Str::slug($validatedData['title']);
-
-        // dd($validatedData);
+        $validatedData['user_id'] = 1;
         return $validatedData;
     }
 }
