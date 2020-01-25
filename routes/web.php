@@ -44,5 +44,13 @@ Route::get('containers', function () {
     });
 
     $example = $container->resolve('example');
-    ddd($example);
+    ddd($example->test());
+});
+
+app()->bind('example', function () {
+    return new \App\Http\Containers\Example;
+});
+Route::get('default-container', function () {
+    $example = resolve('example');
+    ddd($example->test());
 });
