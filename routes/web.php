@@ -69,3 +69,9 @@ Route::get('simple-conatiner', function () {
     $example = resolve(\App\Http\Containers\Example::class);
     ddd($example->test());
 });
+
+
+Route::get('simplest-container', function () {
+    $example3 = resolve(\App\Http\Containers\Example3::class);
+    ddd($example3->test());
+});
