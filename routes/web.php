@@ -36,3 +36,13 @@ Route::get('tags/{tag}', 'web\TagController@show')->name('tags.show');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('containers', function () {
+    $container = new App\Http\Containers\Container;
+    $container->bind('example', function () {
+        return new \App\Http\Containers\Example;
+    });
+
+    $example = $container->resolve('example');
+    ddd($example);
+});
