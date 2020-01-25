@@ -54,3 +54,13 @@ Route::get('default-container', function () {
     $example = resolve('example');
     ddd($example->test());
 });
+
+app()->bind('example2', function () {
+    $example2 = config('services.learning');
+    return new \App\Http\Containers\Example2($example2);
+});
+
+Route::get('default-container-with-param', function () {
+    $example2 = resolve('example2');
+    ddd($example2->test());
+});

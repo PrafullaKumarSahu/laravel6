@@ -5,6 +5,6 @@ class Example
 {
     public function test()
     {
-        return 'It is working fine.';
+        return 'It is working.';
     }
 }
