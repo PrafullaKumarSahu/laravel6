@@ -64,3 +64,8 @@ Route::get('default-container-with-param', function () {
     $example2 = resolve('example2');
     ddd($example2->test());
 });
+
+Route::get('simple-conatiner', function () {
+    $example = resolve(\App\Http\Containers\Example::class);
+    ddd($example->test());
+});
