@@ -79,3 +79,12 @@ Route::get('simplest-container', function () {
 Route::get('yet-simplest-container', function (\App\Http\Containers\Example3 $example3) {
     ddd($example3->test());
 });
+
+app()->bind(App\Http\Containers\Example4::class, function () {
+    $collborator = new \App\Http\Containers\Collaborator;
+    $extra = 'This can be moved inside controller just like any other logic can be moved to controller from these route closure';
+    return new \App\Http\Containers\Example4($collborator, $extra);
+});
+Route::get('simplest-container-with-paramter', function (\App\Http\Containers\Example4 $example4) {
+    ddd($example4->test());
+});
