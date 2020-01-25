@@ -90,3 +90,7 @@ app()->bind(App\Http\Containers\Example4::class, function () {
 Route::get('simplest-container-with-paramter', function (\App\Http\Containers\Example4 $example4) {
     ddd($example4->test());
 });
+
+Route::get('singletone-container-with-paramter', function (\App\Http\Containers\Example4 $example4) {
+    ddd($example4->test());
+});
