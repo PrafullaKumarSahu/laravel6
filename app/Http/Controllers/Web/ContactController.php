@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ContactMe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -41,11 +42,9 @@ class ContactController extends Controller
         $email = request('email');
 
         $sample = "Some message for the receiver!";
+        $name = "PK";
 
-        Mail::raw($sample, function($message) use ($email){
-            $message->to($email)
-                ->subject('Hello There');
-        });
+        Mail::to($email)->send(new ContactMe($name));
 
         return redirect('/contact-us')->with('message', 'Email sent!');
     }
