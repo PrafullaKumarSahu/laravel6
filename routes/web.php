@@ -97,3 +97,6 @@ Route::get('simplest-container-with-paramter', function (\App\Http\Containers\Ex
 Route::get('singletone-container-with-paramter', function (\App\Http\Containers\Example4 $example4) {
     ddd($example4->test());
 });
+
+Route::get('contact-us', 'Web\ContactController@create')->name('contacts.create');
+Route::post('contact-us', 'Web\ContactController@store')->name('contacts.store');
