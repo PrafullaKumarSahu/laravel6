@@ -40,8 +40,10 @@ class ContactController extends Controller
 
         $email = request('email');
 
-        Mail::raw('Test', function($message) use ($email){
-            $message->from('pk@example.com')->to($email)
+        $sample = "Some message for the receiver!";
+
+        Mail::raw($sample, function($message) use ($email){
+            $message->to($email)
                 ->subject('Hello There');
         });
 
