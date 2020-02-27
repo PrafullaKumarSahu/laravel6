@@ -100,3 +100,7 @@ Route::get('singletone-container-with-paramter', function (\App\Http\Containers\
 
 Route::get('contact-us', 'Web\ContactController@create')->name('contacts.create');
 Route::post('contact-us', 'Web\ContactController@store')->name('contacts.store');
+
+Route::get('stackapi', function(){
+    return request();
+});
